@@ -4,8 +4,6 @@ plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
 
-    // Apply other plugins here, e.g. the kotlin plugin for a plugin written in Kotlin
-    // or the groovy plugin if the plugin uses Groovy
 }
 
 // If your plugin has any external java dependencies, Gradle will attempt to
@@ -14,11 +12,13 @@ plugins {
 // project.
 repositories {
     jcenter()
+    google()
 }
 
 dependencies {
     implementation("com.android.tools:r8:2.0.88")
     implementation("io.github.classgraph:classgraph:4.8.78")
+//    api("")
 }
 // Unless overridden in the pluginBundle config DSL, the project version will
 // be used as your plugin version when publishing
@@ -29,7 +29,7 @@ group = "org.moeftc"
 gradlePlugin {
     plugins {
         create("fastCodePlugin") {
-            id = "org.moeftc.fastcode"
+            id = "gradle.plugin.org.moeftc.fastcode"
             implementationClass = "org.moeftc.FastCodePlugin"
         }
     }
@@ -39,14 +39,15 @@ gradlePlugin {
 // configured to publish your plugin to the plugin portal
 pluginBundle {
     website = "https://www.moeftc.org/"
-    vcsUrl = "https://github.com/gradle/gradle"
+    vcsUrl = "https://github.com/greenpizza1203/Fast-Code-Plugin"
     description = "Install OpModes without having to restart your FTC (First Tech Challenge) Robot Controller"
     tags = listOf("First Tech Challenge", "FTC", "FastCode")
 
     (plugins) {
-        greetingsPlugin {
+        "fastCodePlugin" {
             // id is captured from java-gradle-plugin configuration
-            displayName = 'Gradle Greeting plugin'
+            displayName = "FTC Fast Code Plugin"
         }
     }
 }
+
