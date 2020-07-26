@@ -1,12 +1,13 @@
 // First, apply the publishing plugin
 plugins {
     id("com.gradle.plugin-publish") version "0.12.0"
-    `java-gradle-plugin`
+//    `java-gradle-plugin`
     `maven-publish`
+    `kotlin-dsl`
 }
 
 val explode by configurations.creating {
-    configurations.compileOnly.get().extendsFrom(this)
+    configurations["compileOnly"].extendsFrom(this)
 }
 repositories {
     google()
@@ -44,7 +45,7 @@ pluginBundle {
 }
 
 tasks {
-    jar {
+    withType(Jar::class) {
         val explodedFiles = explode.resolve().map { zipTree(it) }
         from(explodedFiles)
     }
