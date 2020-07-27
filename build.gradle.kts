@@ -1,7 +1,6 @@
 // First, apply the publishing plugin
 plugins {
     id("com.gradle.plugin-publish") version "0.12.0"
-//    `java-gradle-plugin`
     `maven-publish`
     `kotlin-dsl`
 }
@@ -19,7 +18,7 @@ dependencies {
     explode("com.android.tools:r8:2.0.88")
     explode("io.github.classgraph:classgraph:4.8.87")
 }
-version = "1.1"
+version = "1.2"
 group = "org.moeftc"
 
 gradlePlugin {
