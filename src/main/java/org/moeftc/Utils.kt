@@ -3,7 +3,6 @@ package org.moeftc
 import com.android.tools.r8.D8
 import com.android.tools.r8.D8Command
 import com.android.tools.r8.OutputMode
-import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.FileSystemLocation
@@ -11,6 +10,7 @@ import org.gradle.api.file.RegularFile
 import java.io.File
 import java.io.OutputStream
 import java.nio.file.Files
+import java.nio.file.Path
 
 fun Task.directoryProperty(path: String): DirectoryProperty {
     val dir = project.layout.buildDirectory.dir(path)
@@ -34,5 +34,5 @@ fun runD8(outputFile: DirectoryProperty, files: Iterable<File>, intermediate: Bo
     D8.run(command)
 }
 
-val FileSystemLocation.asPath
+val FileSystemLocation.asPath: Path
     get() = asFile.toPath()
